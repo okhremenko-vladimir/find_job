@@ -9,6 +9,9 @@ class Company(models.Model):
     description = models.TextField()
     employee_count = models.IntegerField()
 
+    def amount_vacancies(self):
+        return len(Vacancy.objects.filter(company__company_id=self.company_id))
+
 
 class Specialty(models.Model):
     code = models.CharField(max_length=32)

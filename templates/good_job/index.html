@@ -53,7 +53,8 @@
               <img class="mx-auto d-block mw-100" src="{{ company.logo.url }}" width="130" height="80" alt="">
             </a>
             <div class="card-body">
-              <p class="card-text"><a href="#">5 вакансий</a></p>
+              <p class="card-text"><a href="#">{% if company.amount_vacancies %} {{ company.amount_vacancies }} вакансия
+                    {% else %} Нет вакансий{% endif %}</a></p>
             </div>
           </div>
         </div>
