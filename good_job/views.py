@@ -14,14 +14,14 @@ def main_view(request):
 
 def vacancies_view(request):
     vacancies = Vacancy.objects.all()
-    context = {'vacancies': vacancies}
+    context = {'vacancies': vacancies, 'speciality': 'all'}
     return render(request, 'good_job/vacancies.html', context)
 
 
 def vacancies_cat_view(request, speciality):
     vacancies_by_speciality = Vacancy.objects.filter(specialty__code=speciality)
-    context = {'speciality': speciality, 'vacancies_by_speciality': vacancies_by_speciality}
-    return render(request, 'good_job/vacancies_cat.html', context)
+    context = {'speciality': speciality, 'vacancies': vacancies_by_speciality}
+    return render(request, 'good_job/vacancies.html', context)
 
 
 def company_view(request, company_id):
