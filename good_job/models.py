@@ -15,6 +15,9 @@ class Specialty(models.Model):
     title = models.CharField(max_length=32)
     picture = models.ImageField(upload_to='specialty_logo/', default='https://place-hold.it/100x60')
 
+    def amount_vacancies(self):
+        return len(Vacancy.objects.filter(specialty__code=self.code))
+
 
 class Vacancy(models.Model):
     vacancy_id = models.IntegerField(primary_key=True)

@@ -33,7 +33,9 @@
               <img class="mx-auto d-block" src={{ specialty.picture.url }} width="60" height="60" alt="">
               <div class="card-body">
                 <p class="card-text mb-2">{{ specialty.title }}</p>
-                <p class="card-text"><a href="{% url "vacancies_cat" specialty.code %}">2 вакансии</a></p>
+                <p class="card-text"><a href="{% url "vacancies_cat" specialty.code %}">
+                    {% if specialty.amount_vacancies %} {{ specialty.amount_vacancies }} вакансий
+                    {% else %} Нет вакансий{% endif %}</a></p>
               </div>
             </div>
           </div>
