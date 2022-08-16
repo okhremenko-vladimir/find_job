@@ -19,7 +19,7 @@ class Command(BaseCommand):
             )
             row.save()
         for specialty in specialties:
-            row = Specialty(code=specialty['code'], title=specialty['title'])
+            row = Specialty(code=specialty['code'], title=specialty['title'], picture=specialty['picture'])
             row.save()
         for job in jobs:
             row = Vacancy(

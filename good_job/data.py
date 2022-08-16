@@ -174,14 +174,14 @@ companies = [
 ]
 """ Категории """
 specialties = [
-    {"code": "frontend", "title": "Фронтенд"},
-    {"code": "backend", "title": "Бэкенд"},
-    {"code": "gamedev", "title": "Геймдев"},
-    {"code": "devops", "title": "Девопс"},
-    {"code": "design", "title": "Дизайн"},
-    {"code": "products", "title": "Продукты"},
-    {"code": "management", "title": "Менеджмент"},
-    {"code": "testing", "title": "Тестирование"}
+    {"code": "frontend", "title": "Фронтенд", "picture": "specty_frontend.png"},
+    {"code": "backend", "title": "Бэкенд", "picture": "specty_backend.png"},
+    {"code": "gamedev", "title": "Геймдев", "picture": "specty_gamedev.png"},
+    {"code": "devops", "title": "Девопс", "picture": "specty_devops.png"},
+    {"code": "design", "title": "Дизайн", "picture": "specty_design.png"},
+    {"code": "products", "title": "Продукты", "picture": "specty_products.png"},
+    {"code": "management", "title": "Менеджмент", "picture": "specty_management.png"},
+    {"code": "testing", "title": "Тестирование", "picture": "specty_testing.png"}
 ]
 """ Статусы в формате Enum """
 #

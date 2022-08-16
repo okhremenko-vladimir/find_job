@@ -5,7 +5,7 @@ class Company(models.Model):
     company_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=32)
     location = models.CharField(max_length=32)
-    logo = models.URLField(default='https://place-hold.it/100x60')
+    logo = models.ImageField(upload_to='company_logo/', default='https://place-hold.it/100x60')
     description = models.TextField()
     employee_count = models.IntegerField()
 
@@ -13,7 +13,7 @@ class Company(models.Model):
 class Specialty(models.Model):
     code = models.CharField(max_length=32)
     title = models.CharField(max_length=32)
-    picture = models.URLField(default='https://place-hold.it/100x60')
+    picture = models.ImageField(upload_to='specialty_logo/', default='https://place-hold.it/100x60')
 
 
 class Vacancy(models.Model):
