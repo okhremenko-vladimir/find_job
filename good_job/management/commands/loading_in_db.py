@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.utils.dateparse import parse_date
 
@@ -9,6 +10,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for company in companies:
+            User.objects.create_user(
+                username=company['title'] + '_user',
+                email=company['title'] + '@example.com',
+                password=company['employee_count'] + company['title']
+            )
             row = Company(
                 company_id=int(company['id']),
                 name=company['title'],
@@ -16,6 +22,7 @@ class Command(BaseCommand):
                 logo=company['logo'],
                 description=company['description'],
                 employee_count=company['employee_count'],
+                owner=User.objects.get(username=company['title'] + '_user'),
             )
             row.save()
         for specialty in specialties:
