@@ -6,7 +6,6 @@ from .models import Vacancy, Company, Specialty
 
 def main_view(request):
     specialties = Specialty.objects.all()
-
     companies = Company.objects.all()
     context = {'specialties': specialties, 'companies': companies}
     return render(request, 'good_job/index.html', context)
