@@ -15,6 +15,11 @@ class Company(models.Model):
     def amount_vacancies(self):
         return len(Vacancy.objects.filter(company__company_id=self.company_id))
 
+    class Meta:
+        verbose_name_plural = 'Компании'
+        verbose_name = 'Компания'
+        ordering = ['-employee_count']
+
 
 class Specialty(models.Model):
     code = models.CharField(max_length=32)
@@ -39,6 +44,11 @@ class Vacancy(models.Model):
     def skills_through_point(self):
         return ' • '.join(self.skills.split(', '))
 
+    class Meta:
+        verbose_name_plural = 'Вакансии'
+        verbose_name = 'Вакансия'
+        ordering = ['-published_at']
+
 
 class Application(models.Model):
     written_username = models.CharField(max_length=64)
@@ -46,3 +56,9 @@ class Application(models.Model):
     written_cover_letter = models.TextField()
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="applications")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="applications")
+    published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
+
+    class Meta:
+        verbose_name_plural = 'Заявки'
+        verbose_name = 'Заявка'
+        ordering = ['-published']
