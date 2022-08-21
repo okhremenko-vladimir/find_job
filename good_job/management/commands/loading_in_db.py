@@ -19,14 +19,18 @@ class Command(BaseCommand):
                 company_id=int(company['id']),
                 name=company['title'],
                 location=company['location'],
-                logo=company['logo'],
+                logo='logo/company/' + company['logo'],
                 description=company['description'],
                 employee_count=company['employee_count'],
                 owner=User.objects.get(username=company['title'] + '_user'),
             )
             row.save()
         for specialty in specialties:
-            row = Specialty(code=specialty['code'], title=specialty['title'], picture=specialty['picture'])
+            row = Specialty(
+                code=specialty['code'],
+                title=specialty['title'],
+                picture='logo/specialty/' + specialty['picture']
+            )
             row.save()
         for job in jobs:
             row = Vacancy(
