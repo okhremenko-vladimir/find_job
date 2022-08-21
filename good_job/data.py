@@ -170,7 +170,8 @@ companies = [
      "title": "primalassault",
      "logo": "logo8.png",
      "employee_count": "13",
-     "location": "Москва", "description": "Реализуем проекты любой сложности в digital-сфере" },
+     "location": "Москва",
+     "description": "Реализуем проекты любой сложности в digital-сфере"},
 ]
 """ Категории """
 specialties = [
