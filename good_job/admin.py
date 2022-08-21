@@ -7,11 +7,15 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'location', 'employee_count', 'owner',)
+    list_display_links = ('name',)
+    search_fields = ('name', 'location',)
 
 
 class VacancyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'specialty', 'skills', 'company', 'published_at', )
+    list_display_links = ('title',)
+    search_fields = ('title', 'company', 'specialty',)
 
 
 admin.site.register(Application, ApplicationAdmin)
