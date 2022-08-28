@@ -1,6 +1,8 @@
-from django.http import HttpResponseNotFound, HttpResponseServerError
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponseServerError
 from django.shortcuts import render
+from django.contrib.auth.models import User
 
+from .forms import ApplicationForm
 from .models import Vacancy, Company, Specialty
 
 
@@ -31,9 +33,19 @@ def company_view(request, company_id):
 
 
 def vacancy_view(request, vacancy_id):
-    vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
-    context = {'vacancy': vacancy}
-    return render(request, 'good_job/vacancy.html', context)
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/')
+    else:
+        vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
+        form = ApplicationForm(request.POST)
+        context = {'vacancy': vacancy, 'form': form}
+        return render(request, 'good_job/vacancy.html', context)
+
+
+def sent_application_view(request):
+    return render(request, 'good_job/sent.html')
 
 
 def custom_handler404(request, exception):
