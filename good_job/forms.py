@@ -10,11 +10,11 @@ class ApplicationForm(ModelForm):
 
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Записаться на пробный урок'))
-        self.helper.form_class = 'card mt-4 mb-3'
-        self.helper.label_class = 'mb-1 mt-2'
-        self.helper.field_class = 'col-lg-8'
-        #self.helper.layout = Layout(Fieldset('Вас зовут', 'Ваш телефон', 'Сопроводительное письмо'))
+        self.helper.add_input(Submit('submit', 'Отправить отклик'))
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg'
+        self.helper.field_class = 'col-lg'
+        self.helper.layout = Layout(Fieldset('Отозваться на вакансию', 'written_username', 'written_phone', 'written_cover_letter'))
 
     class Meta:
         model = Application

@@ -36,15 +36,16 @@ def vacancy_view(request, vacancy_id):
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('sent')
     else:
-        vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
         form = ApplicationForm(request.POST)
-        context = {'vacancy': vacancy, 'form': form}
-        return render(request, 'good_job/vacancy.html', context)
+    vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
+    form = ApplicationForm(request.POST)
+    context = {'vacancy': vacancy, 'form': form}
+    return render(request, 'good_job/vacancy.html', context)
 
 
-def sent_application_view(request):
+def sent_application_view(request, vacancy_id):
     return render(request, 'good_job/sent.html')
 
 
