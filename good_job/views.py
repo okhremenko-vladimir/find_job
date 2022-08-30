@@ -1,7 +1,5 @@
-from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponseServerError
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponseServerError, Http404
 from django.shortcuts import render
-from django.contrib import messages
-from django.urls import reverse_lazy, reverse
 
 from .forms import ApplicationForm
 from .models import Vacancy, Company, Specialty
@@ -34,18 +32,20 @@ def company_view(request, company_id):
 
 
 def vacancy_view(request, vacancy_id):
+    try:
+        vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
+    except Vacancy.DoesNotExist:
+        raise Http404()
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
             instance_form = form.save(commit=False)
             instance_form.user = request.user
-            instance_form.vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
+            instance_form.vacancy = vacancy
             instance_form.save()
-            messages.success(request, vacancy_id)
             return HttpResponseRedirect('sent')
     else:
         form = ApplicationForm()
-    vacancy = Vacancy.objects.get(vacancy_id=vacancy_id)
     form = ApplicationForm()
     context = {'vacancy': vacancy, 'form': form}
     return render(request, 'good_job/vacancy.html', context)
