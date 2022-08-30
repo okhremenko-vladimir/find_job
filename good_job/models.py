@@ -7,7 +7,7 @@ class Company(models.Model):
     company_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=32, verbose_name='Название')
     location = models.CharField(max_length=32, verbose_name='Город')
-    logo = models.ImageField(upload_to='logo/company/', default='https://place-hold.it/100x60')
+    logo = models.ImageField(upload_to='logo/company/', default='logo/company/plug.png')
     description = models.TextField()
     employee_count = models.IntegerField(verbose_name='Число сотрудников')
     owner = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Владелец')
@@ -27,7 +27,7 @@ class Company(models.Model):
 class Specialty(models.Model):
     code = models.CharField(max_length=32)
     title = models.CharField(max_length=32)
-    picture = models.ImageField(upload_to='logo/specialty/', default='https://place-hold.it/100x60')
+    picture = models.ImageField(upload_to='logo/specialty/', default='logo/specialty/plug.png')
 
     def __str__(self):
         return self.title
