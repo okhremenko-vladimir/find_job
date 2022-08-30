@@ -66,7 +66,7 @@ class Application(models.Model):
     written_phone = PhoneNumberField(verbose_name='Ваш телефон')
     written_cover_letter = models.TextField(verbose_name='Сопроводительное письмо')
     vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE, related_name="applications")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="applications")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name="applications")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Опубликовано')
 
     class Meta:
