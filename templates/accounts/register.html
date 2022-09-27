@@ -13,21 +13,13 @@
     <div class="row">
       <div class="col-8 col-lg-4 offset-2 offset-lg-4">
         <form method="post" class="form-signin pt-5" enctype="multipart/form-data">
-
           <div class="text-center mt-5 b-1">
-            <h1 class="h3 mb-3 font-weight-normal">Джуманджи</h1>
-            <p class="h5 font-weight-light">Создайте аккаунт</p>
+            <h1 class="h3 mb-3 font-weight-normal"><a class="nav-link" href="{% url "main" %}">Джуманджи</a></h1>
+              {% csrf_token %}
+              {% crispy form %}
           </div>
-            {% csrf_token %}
-            {{ form|crispy }}
-          <div class="checkbox mb-3"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Зарегистрироваться</button>
         </form>
-
          <div class="mt-4 text-center"><p>Есть аккаунт? <a href="{% url "login" %}">Войдите!</a></p></div>
-
-
-
       </div>
     </div>
   </main>

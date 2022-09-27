@@ -14,10 +14,10 @@ class UserForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Зарегистрироваться'))
+        self.helper.add_input(Submit('submit', 'Зарегистрироваться', css_class='btn btn-primary btn-lg btn-block'))
         self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg'
-        self.helper.field_class = 'col-lg'
+        self.helper.label_class = 'float-left pl-3'
+        self.helper.field_class = 'col-lg-12'
         self.helper.layout = Layout(Fieldset('Создайте аккаунт', 'first_name', 'last_name', 'username', 'email', 'password1', 'password2'))
 
     class Meta:
