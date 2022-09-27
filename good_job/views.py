@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponseServerError, Http404
 from django.shortcuts import render
 
@@ -49,6 +50,15 @@ def vacancy_view(request, vacancy_id):
     form = ApplicationForm()
     context = {'vacancy': vacancy, 'form': form}
     return render(request, 'good_job/vacancy.html', context)
+
+
+def search_view(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        found_vacancies = Vacancy.objects.filter(Q(title__icontains=search_query) | Q(skills__icontains=search_query))
+    else:
+        found_vacancies = Vacancy.objects.all()
+    return render(request, 'good_job/search.html', {'vacancies': found_vacancies, 'search_query': search_query})
 
 
 def sent_application_view(request, vacancy_id):
